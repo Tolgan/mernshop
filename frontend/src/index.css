@@ -1,0 +1,44 @@
+main {
+  min-height: 80vh;
+}
+
+h3 {
+  padding: 1rem 0;
+}
+h1 {
+  font-size: 1.4rem;
+  padding: 0.1rem;
+}
+h2 {
+  font-size: 1.4rem;
+  padding: 0.5rem 0;
+}
+
+.rating span {
+  margin: 0.1rem;
+}
+.cardstyling {
+  height: 50vh;
+}
+.cardstyling:hover {
+  box-shadow: 5px 10px 8px 10px #888888;
+}
+.dropshadow:hover {
+  filter: opacity(70%);
+}
+.carousel img {
+  height: 60vh;
+  width: 100vw;
+  margin: 0;
+}
+.carousel a {
+  margin: 0 auto;
+}
+.carousel-item-next,
+.carousel-item-prev,
+.carousel-item.active {
+  display: flex;
+}
+.carousel-caption h2 {
+  color: rgb(212, 114, 114);
+}
