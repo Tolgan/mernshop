@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Order = require("../models/orderModel.js");
+const Order = require("../models/OrderModel.js");
 const { auth, admin } = require("../middleware/auth");
 
 router.get("/myorders", auth, async (req, res) => {
