@@ -34,7 +34,7 @@ const Filtering = ({ history, maxprice, minprice, loading }) => {
     }
     return c;
   });
-  console.log(cate);
+
   return (
     <Collapse>
       <Panel header="Advanced Search">

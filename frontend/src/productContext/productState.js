@@ -51,7 +51,6 @@ const ProductState = ({ children }) => {
         `/api/products?keyword=${keyword}&pageNumber=${pageNumber}&minPrice=${price[0]}&maxPrice=${price[1]}&category=${category}`
       );
       dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
-      console.log(data);
     } catch (error) {
       dispatch({
         type: PRODUCT_LIST_FAIL,

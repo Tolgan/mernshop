@@ -151,7 +151,7 @@ const Productscreen = ({ match, history }) => {
                         <p>{review.createdAt.substring(0, 10)}</p>
                       </Col>
                       <Col>
-                        {review.user === userInfo._id && (
+                        {userInfo && review.user === userInfo._id && (
                           <Button
                             variant="danger"
                             className="btn-sm"
