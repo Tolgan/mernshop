@@ -44,6 +44,8 @@ export const productReducer = (state, action) => {
         products: action.payload.products,
         page: action.payload.page,
         pages: action.payload.pages,
+        maxprice: action.payload.price.maxprice,
+        minprice: action.payload.price.minprice,
       };
     case PRODUCT_LIST_FAIL:
       return { loading: false, error: action.payload };

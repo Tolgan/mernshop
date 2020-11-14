@@ -7,7 +7,7 @@ import Spinnerr from "./Spinnerr";
 const ProductCarousel = () => {
   const context = useContext(ProductContext);
   const { topProducts, listTopProducts, loadingtop, error } = context;
-  console.log(topProducts);
+
   useEffect(() => {
     listTopProducts();
   }, []);

@@ -125,7 +125,7 @@ const OrderState = ({ children }) => {
           Authorization: `Bearer ${mytoken}`,
         },
       };
-      const { data } = await axios.get(`/api/orders/myorder`, config);
+      const { data } = await axios.get(`/api/orders/myorders`, config);
 
       dispatch({ type: ORDER_LIST_MY_SUCCESS, payload: data });
     } catch (error) {

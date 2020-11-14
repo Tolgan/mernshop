@@ -35,14 +35,15 @@ app.get("/api/config/paypal", (req, res) =>
   res.send(process.env.PAYPAL_CLIENT_ID)
 );
 const ___dirname = path.resolve();
+
+app.use("/uploads", express.static(path.join(___dirname, "/uploads")));
+
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(___dirname, "/frontend/build")));
   app.get("*", (req, res) =>
     res.sendFile(path.resolve(___dirname, "frontend", "build", "index.html"))
   );
 }
-
-app.use("/uploads", express.static(path.join(___dirname, "/uploads")));
 
 app.listen(
   PORT,

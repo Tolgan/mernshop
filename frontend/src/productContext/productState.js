@@ -39,11 +39,16 @@ const ProductState = ({ children }) => {
   };
   const [state, dispatch] = useReducer(productReducer, initialState);
 
-  const listProducts = async (keyword = "", pageNumber = "") => {
+  const listProducts = async (
+    keyword = "",
+    pageNumber = "",
+    price = "",
+    category = ""
+  ) => {
     try {
       dispatch({ type: PRODUCT_LIST_REQUEST });
       const { data } = await axios.get(
-        `/api/products?keyword=${keyword}&pageNumber=${pageNumber}`
+        `/api/products?keyword=${keyword}&pageNumber=${pageNumber}&minPrice=${price[0]}&maxPrice=${price[1]}&category=${category}`
       );
       dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
       console.log(data);
@@ -250,6 +255,8 @@ const ProductState = ({ children }) => {
         listProductDetails,
         success: state.success,
         successDelete: state.successDelete,
+        maxprice: state.maxprice,
+        minprice: state.minprice,
       }}
     >
       {children}

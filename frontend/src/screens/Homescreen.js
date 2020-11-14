@@ -1,25 +1,43 @@
 import React, { useEffect, useContext } from "react";
+import { Route } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
 import Product from "../components/Product";
+import "antd/dist/antd.css";
 import Spinnerr from "../components/Spinnerr";
 import { ProductContext } from "../productContext/productState";
 import Message from "../components/Message";
 import Paginate from "../components/Paginate";
 import ProductCarousel from "../components/ProductCarousel";
 import Meta from "../components/Meta";
-const Homescreen = ({ match }) => {
+import Filtering from "../components/Filtering";
+const Homescreen = ({ match, location }) => {
   const context = useContext(ProductContext);
-  const { listProducts, products, error, loading, page, pages } = context;
+  const {
+    listProducts,
+    products,
+    error,
+    loading,
+    page,
+    pages,
+    maxprice,
+    minprice,
+  } = context;
   const keyword = match.params.keyword;
   const pageNumber = match.params.pageNumber || 1;
+  const minPrice = new URLSearchParams(location.search).get("min");
+  const maxPrice = new URLSearchParams(location.search).get("max");
+  const category = new URLSearchParams(location.search).get("category");
+
+  const price = [minPrice, maxPrice];
 
   useEffect(() => {
-    listProducts(keyword, pageNumber);
-  }, [keyword, pageNumber]);
+    listProducts(keyword, pageNumber, price, category);
+  }, [keyword, pageNumber, location]);
   return (
     <>
       <Meta />
+
       {!keyword ? (
         <ProductCarousel />
       ) : (
@@ -28,6 +46,16 @@ const Homescreen = ({ match }) => {
         </Link>
       )}
       <h1>Latest Products</h1>
+      <Route
+        render={({ history }) => (
+          <Filtering
+            history={history}
+            maxprice={maxprice}
+            minprice={minprice}
+            loading={loading}
+          />
+        )}
+      />
       {loading ? (
         <Spinnerr />
       ) : error ? (

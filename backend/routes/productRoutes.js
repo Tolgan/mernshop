@@ -8,22 +8,40 @@ router.get("/", async (req, res) => {
   try {
     const pageSize = 8;
     const page = Number(req.query.pageNumber) || 1;
-    const keyword = req.query.keyword
-      ? {
-          name: {
-            $regex: req.query.keyword,
-            $options: "i",
-          },
-        }
-      : {};
+    const min = Number(req.query.minPrice);
+    const max = Number(req.query.maxPrice);
+    const cat =
+      req.query.category.length &&
+      req.query.category !== "null" &&
+      req.query.category.split(",");
+    const checkbox =
+      cat && cat !== null && cat.length !== 0 ? { category: { $in: cat } } : {};
 
-    const count = await Product.countDocuments({ ...keyword });
+    const keyword =
+      min || max
+        ? { price: { $gte: min, $lte: max } }
+        : req.query.keyword
+        ? {
+            name: {
+              $regex: req.query.keyword,
+              $options: "i",
+            },
+          }
+        : {};
 
-    const products = await Product.find({ ...keyword })
+    const count = await Product.countDocuments({ ...keyword, ...checkbox });
+    const maxprice = await Product.findOne().sort({ price: -1 });
+    const minprice = await Product.findOne().sort({ price: +1 });
+    const products = await Product.find({ ...keyword, ...checkbox })
       .limit(pageSize)
       .skip(pageSize * (page - 1));
 
-    res.json({ products, page, pages: Math.ceil(count / pageSize) });
+    res.json({
+      products,
+      price: { maxprice: maxprice.price, minprice: minprice.price },
+      page,
+      pages: Math.ceil(count / pageSize),
+    });
   } catch (error) {
     console.log(error);
   }
