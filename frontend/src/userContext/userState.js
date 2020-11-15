@@ -26,7 +26,6 @@ import {
   USER_UPDATE_REQUEST,
   USER_UPDATE_SUCCESS,
   USER_UPDATE_FAIL,
-  USER_UPDATE_PROFILE_RESET,
 } from "../constants/userConstants";
 
 import { userReducer } from "./userReducer";

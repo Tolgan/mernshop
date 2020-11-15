@@ -1,14 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  Button,
-  Card,
-  Col,
-  Form,
-  Image,
-  ListGroup,
-  Row,
-} from "react-bootstrap";
+import { Button, Card, Col, Form, ListGroup, Row } from "react-bootstrap";
+import { Image } from "antd";
 import Rating from "../components/Rating";
 import { ProductContext } from "../productContext/productState";
 import Spinnerr from "../components/Spinnerr";
@@ -61,7 +54,12 @@ const Productscreen = ({ match, history }) => {
 
           <Row>
             <Col md={6}>
-              <Image src={product.image} alt={product.name} fluid />
+              <Image
+                src={product.image}
+                alt={product.name}
+                fluid
+                style={{ cursor: "pointer" }}
+              />
             </Col>
             <Col md={3}>
               <ListGroup variant="flush">

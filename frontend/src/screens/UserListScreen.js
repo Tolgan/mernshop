@@ -3,7 +3,6 @@ import { LinkContainer } from "react-router-bootstrap";
 import { Table, Button } from "react-bootstrap";
 import Message from "../components/Message";
 import Spinnerr from "../components/Spinnerr";
-import FormContainer from "../components/FormContainer";
 import { UserContext } from "../userContext/userState";
 
 const UserListScreen = ({ history }) => {
