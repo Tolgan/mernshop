@@ -5,6 +5,7 @@ import Message from "../components/Message";
 import Spinnerr from "../components/Spinnerr";
 import FormContainer from "../components/FormContainer";
 import { UserContext } from "../userContext/userState";
+import { FormattedMessage } from "react-intl";
 
 const RegisterScreen = ({ location, history }) => {
   const [name, setName] = useState("");
@@ -32,14 +33,18 @@ const RegisterScreen = ({ location, history }) => {
 
   return (
     <FormContainer>
-      <h1>Sign Up</h1>
+      <h1>
+        <FormattedMessage id="signup" />
+      </h1>
       {message && <Message variant="danger">{message}</Message>}
 
       {error && <Message variant="danger">{error}</Message>}
       {loading && <Spinnerr />}
       <Form onSubmit={submitHandler}>
         <Form.Group controlId="name">
-          <Form.Label>Name </Form.Label>
+          <Form.Label>
+            <FormattedMessage id="name" />{" "}
+          </Form.Label>
           <Form.Control
             type="name"
             placeholder="Enter Name"
@@ -48,7 +53,9 @@ const RegisterScreen = ({ location, history }) => {
           ></Form.Control>
         </Form.Group>
         <Form.Group controlId="email">
-          <Form.Label>Email Address</Form.Label>
+          <Form.Label>
+            <FormattedMessage id="email" />
+          </Form.Label>
           <Form.Control
             type="email"
             placeholder="Enter email"
@@ -58,7 +65,9 @@ const RegisterScreen = ({ location, history }) => {
         </Form.Group>
 
         <Form.Group controlId="password">
-          <Form.Label>Password</Form.Label>
+          <Form.Label>
+            <FormattedMessage id="password" />
+          </Form.Label>
           <Form.Control
             type="password"
             placeholder="Enter password"
@@ -67,7 +76,9 @@ const RegisterScreen = ({ location, history }) => {
           ></Form.Control>
         </Form.Group>
         <Form.Group controlId="confirmPassword">
-          <Form.Label>Confirm Password</Form.Label>
+          <Form.Label>
+            <FormattedMessage id="confirm" />
+          </Form.Label>
           <Form.Control
             type="password"
             placeholder="Confirm password"
@@ -77,14 +88,14 @@ const RegisterScreen = ({ location, history }) => {
         </Form.Group>
 
         <Button type="submit" variant="primary">
-          Register
+          <FormattedMessage id="register" />
         </Button>
       </Form>
       <Row className="py-3">
         <Col>
-          Already Have Account?
+          <FormattedMessage id="account" />
           <Link to={redirect ? `/login?redirect=${redirect}` : "/login"}>
-            Login
+            <FormattedMessage id="login" />
           </Link>
         </Col>
       </Row>

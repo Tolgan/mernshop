@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
+import { FormattedMessage } from "react-intl";
 
 const SearchBox = ({ history }) => {
   const [keyword, setKeyword] = useState("");
@@ -15,15 +16,19 @@ const SearchBox = ({ history }) => {
 
   return (
     <Form onSubmit={submitSearch} inline>
-      <Form.Control
-        type="text"
-        name="q"
-        onChange={(e) => setKeyword(e.target.value)}
-        placeholder="Search Products.."
-        className="mr-sm-2 ml-sm-5"
-      ></Form.Control>
+      <FormattedMessage id="searchplace">
+        {(placeholder) => (
+          <Form.Control
+            type="text"
+            name="q"
+            onChange={(e) => setKeyword(e.target.value)}
+            placeholder={placeholder}
+            className="mr-sm-2 ml-sm-5"
+          ></Form.Control>
+        )}
+      </FormattedMessage>
       <Button type="submit" variant="outline-success" className="p-2">
-        Search
+        <FormattedMessage id="search" />
       </Button>
     </Form>
   );

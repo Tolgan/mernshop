@@ -1,4 +1,5 @@
 import React, { useEffect, useContext, useState } from "react";
+import { FormattedMessage } from "react-intl";
 import { Link } from "react-router-dom";
 import { Button, Card, Col, Form, ListGroup, Row } from "react-bootstrap";
 import { Image } from "antd";
@@ -42,7 +43,7 @@ const Productscreen = ({ match, history }) => {
     <>
       {/* i need to use <  as a button change back  */}
       <Link className="btn btn-light my-3" to="/">
-        Back
+        <FormattedMessage id="back" />
       </Link>
       {loading ? (
         <Spinnerr />
@@ -74,7 +75,7 @@ const Productscreen = ({ match, history }) => {
                 </ListGroup.Item>
                 <ListGroup.Item>Price: ${product.price}</ListGroup.Item>
                 <ListGroup.Item>
-                  Description: {product.description}
+                  <FormattedMessage id="description" />: {product.description}
                 </ListGroup.Item>
               </ListGroup>
             </Col>
@@ -83,7 +84,10 @@ const Productscreen = ({ match, history }) => {
                 <ListGroup variant="flush">
                   <ListGroup.Item>
                     <Row>
-                      <Col>Price:</Col>
+                      <Col>
+                        {" "}
+                        <FormattedMessage id="price" />:
+                      </Col>
                       <Col>
                         <strong>${product.price}</strong>
                       </Col>
@@ -91,16 +95,25 @@ const Productscreen = ({ match, history }) => {
                   </ListGroup.Item>
                   <ListGroup.Item>
                     <Row>
-                      <Col>Status:</Col>
                       <Col>
-                        {product.countInStock > 0 ? "In Stock" : "Out of Stock"}
+                        {" "}
+                        <FormattedMessage id="status" />:
+                      </Col>
+                      <Col>
+                        {product.countInStock > 0 ? (
+                          <FormattedMessage id="instock" />
+                        ) : (
+                          <FormattedMessage id="outofstock" />
+                        )}
                       </Col>
                     </Row>
                   </ListGroup.Item>
                   {product.countInStock > 0 && (
                     <ListGroup.Item>
                       <Row>
-                        <Col>Qty</Col>
+                        <Col>
+                          <FormattedMessage id="qty" />
+                        </Col>
                         <Col>
                           <Form.Control
                             as="select"
@@ -128,7 +141,7 @@ const Productscreen = ({ match, history }) => {
                       type="button"
                       disabled={product.countInStock === 0}
                     >
-                      Add to Cart
+                      <FormattedMessage id="addtocart" />
                     </Button>
                   </ListGroup.Item>
                 </ListGroup>
@@ -137,8 +150,14 @@ const Productscreen = ({ match, history }) => {
           </Row>
           <Row>
             <Col md={6}>
-              <h2>Reviews</h2>
-              {product.reviews.length === 0 && <Message>No Reviews</Message>}
+              <h2>
+                <FormattedMessage id="reviews" />
+              </h2>
+              {product.reviews.length === 0 && (
+                <Message>
+                  <FormattedMessage id="noreviews" />
+                </Message>
+              )}
               <ListGroup variant="flush">
                 {product.reviews.map((review) => (
                   <ListGroup.Item key={review._id}>
@@ -168,10 +187,12 @@ const Productscreen = ({ match, history }) => {
                   </ListGroup.Item>
                 ))}
                 <ListGroup.Item>
-                  <h2>Write a Customer Review</h2>
+                  <h2>
+                    <FormattedMessage id="writeacustomerreview" />
+                  </h2>
                   {success && (
                     <Message variant="success">
-                      Review submitted successfully
+                      <FormattedMessage id="reviewsubmittedsuccessfully" />
                     </Message>
                   )}
                   {loading && <Spinnerr />}
@@ -179,22 +200,38 @@ const Productscreen = ({ match, history }) => {
                   {userInfo ? (
                     <Form onSubmit={submitHandler}>
                       <Form.Group controlId="rating">
-                        <Form.Label>Rating</Form.Label>
+                        <Form.Label>
+                          <FormattedMessage id="rating" />
+                        </Form.Label>
                         <Form.Control
                           as="select"
                           value={rating}
                           onChange={(e) => setRating(e.target.value)}
                         >
-                          <option value="">Select...</option>
-                          <option value="1">1 - Poor</option>
-                          <option value="2">2 - Fair</option>
-                          <option value="3">3 - Good</option>
-                          <option value="4">4 - Very Good</option>
-                          <option value="5">5 - Excellent</option>
+                          <option value="">
+                            <FormattedMessage id="select..." />
+                          </option>
+                          <option value="1">
+                            1 - <FormattedMessage id="poor" />
+                          </option>
+                          <option value="2">
+                            2 - <FormattedMessage id="fair" />
+                          </option>
+                          <option value="3">
+                            3 - <FormattedMessage id="good" />
+                          </option>
+                          <option value="4">
+                            4 - <FormattedMessage id="verygood" />
+                          </option>
+                          <option value="5">
+                            5 - <FormattedMessage id="excellent" />
+                          </option>
                         </Form.Control>
                       </Form.Group>
                       <Form.Group controlId="comment">
-                        <Form.Label>Comment</Form.Label>
+                        <Form.Label>
+                          <FormattedMessage id="comment" />
+                        </Form.Label>
                         <Form.Control
                           as="textarea"
                           row="3"

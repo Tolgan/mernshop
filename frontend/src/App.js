@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import { Container } from "react-bootstrap";
@@ -19,47 +19,58 @@ import UserEditScreen from "./screens/UserEditScreen.js";
 import ProductListScreen from "./screens/ProductListScreen.js";
 import ProductEditScreen from "./screens/ProductEditScreen.js";
 import OrderListScreen from "./screens/OrderListScreen.js";
+import { IntlProvider } from "react-intl";
+import { langcontext } from "./languagecontext/languageState.js";
 
 const App = () => {
-  return (
-    <Router>
-      <Header />
-      <main className="py-3">
-        <Container>
-          <Route path="/login" component={LoginScreen} />
-          <Route path="/register" component={RegisterScreen} />
-          <Route path="/profile" component={ProfileScreen} />
-          <Route path="/shipping" component={ShippingScreen} />
-          <Route path="/placeorder" component={PlaceOrderScreen} />
-          <Route path="/order/:id" component={OrderScreen} />
-          <Route path="/payment" component={PaymentScreen} />
-          <Route path="/" component={Homescreen} exact />
-          <Route path="/page/:pageNumber" component={Homescreen} />
+  const context = useContext(langcontext);
+  const { language } = context;
 
-          <Route
-            path="/search/:keyword/page/:pageNumber"
-            component={Homescreen}
-          />
-          <Route path="/search/:keyword" component={Homescreen} exact />
-          <Route path="/product/:id" component={Productscreen} />
-          <Route path="/cart/:id?" component={CartScreen} />
-          <Route path="/admin/userlist" component={UserListScreen} />
-          <Route path="/admin/user/:id/edit" component={UserEditScreen} />
-          <Route
-            path="/admin/productlist"
-            component={ProductListScreen}
-            exact
-          />
-          <Route
-            path="/admin/productlist/:pageNumber"
-            component={ProductListScreen}
-          />
-          <Route path="/admin/product/:id/edit" component={ProductEditScreen} />
-          <Route path="/admin/orderlist" component={OrderListScreen} />
-        </Container>
-      </main>
-      <Footer />
-    </Router>
+  useEffect(() => {}, [language]);
+  return (
+    <IntlProvider locale="en" messages={language}>
+      <Router>
+        <Header />
+        <main className="py-3">
+          <Container>
+            <Route path="/login" component={LoginScreen} />
+            <Route path="/register" component={RegisterScreen} />
+            <Route path="/profile" component={ProfileScreen} />
+            <Route path="/shipping" component={ShippingScreen} />
+            <Route path="/placeorder" component={PlaceOrderScreen} />
+            <Route path="/order/:id" component={OrderScreen} />
+            <Route path="/payment" component={PaymentScreen} />
+            <Route path="/" component={Homescreen} exact />
+            <Route path="/page/:pageNumber" component={Homescreen} />
+
+            <Route
+              path="/search/:keyword/page/:pageNumber"
+              component={Homescreen}
+            />
+            <Route path="/search/:keyword" component={Homescreen} exact />
+            <Route path="/product/:id" component={Productscreen} />
+            <Route path="/cart/:id?" component={CartScreen} />
+            <Route path="/admin/userlist" component={UserListScreen} />
+            <Route path="/admin/user/:id/edit" component={UserEditScreen} />
+            <Route
+              path="/admin/productlist"
+              component={ProductListScreen}
+              exact
+            />
+            <Route
+              path="/admin/productlist/:pageNumber"
+              component={ProductListScreen}
+            />
+            <Route
+              path="/admin/product/:id/edit"
+              component={ProductEditScreen}
+            />
+            <Route path="/admin/orderlist" component={OrderListScreen} />
+          </Container>
+        </main>
+        <Footer />
+      </Router>
+    </IntlProvider>
   );
 };
 

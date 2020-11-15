@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
 import Product from "../components/Product";
 import "antd/dist/antd.css";
+import { FormattedMessage } from "react-intl";
 import Spinnerr from "../components/Spinnerr";
 import { ProductContext } from "../productContext/productState";
 import Message from "../components/Message";
@@ -42,10 +43,12 @@ const Homescreen = ({ match, location }) => {
         <ProductCarousel />
       ) : (
         <Link to="/" className="btn btn-light">
-          Go Back
+          <FormattedMessage id="goback" />
         </Link>
       )}
-      <h1>Latest Products</h1>
+      <h1>
+        <FormattedMessage id="latestproducts" />
+      </h1>
       <Route
         render={({ history }) => (
           <Filtering

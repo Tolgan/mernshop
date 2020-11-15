@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Slider, Checkbox, Row, Col, Collapse } from "antd";
 import { categorys } from "../categorys";
 import { Form, Button } from "react-bootstrap";
+import { FormattedMessage } from "react-intl";
 const { Panel } = Collapse;
 
 const Filtering = ({ history, maxprice, minprice, loading }) => {
@@ -37,7 +38,7 @@ const Filtering = ({ history, maxprice, minprice, loading }) => {
 
   return (
     <Collapse>
-      <Panel header="Advanced Search">
+      <Panel header={<FormattedMessage id="advancedsearch" />}>
         <Form onSubmit={handleSubmit}>
           <Form.Group>
             <Checkbox.Group
@@ -72,7 +73,7 @@ const Filtering = ({ history, maxprice, minprice, loading }) => {
                 </div>
 
                 <Button variant="primary" type="submit" className="mt-3">
-                  Search
+                  <FormattedMessage id="search" />
                 </Button>
               </>
             )}

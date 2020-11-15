@@ -7,17 +7,20 @@ import ProductState from "./productContext/productState";
 import CartState from "./cartContext/cartState";
 import UserState from "./userContext/userState";
 import OrderState from "./orderContext/orderState";
+import LanguageState from "./languagecontext/languageState";
 
 ReactDOM.render(
-  <UserState>
-    <ProductState>
-      <CartState>
-        <OrderState>
-          <App />
-        </OrderState>
-      </CartState>
-    </ProductState>
-  </UserState>,
+  <LanguageState>
+    <UserState>
+      <ProductState>
+        <CartState>
+          <OrderState>
+            <App />
+          </OrderState>
+        </CartState>
+      </ProductState>
+    </UserState>
+  </LanguageState>,
   document.getElementById("root")
 );
 
