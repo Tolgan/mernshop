@@ -43,12 +43,13 @@ const ProductState = ({ children }) => {
     keyword = "",
     pageNumber = "",
     price = "",
-    category = ""
+    category = "",
+    sort = ""
   ) => {
     try {
       dispatch({ type: PRODUCT_LIST_REQUEST });
       const { data } = await axios.get(
-        `/api/products?keyword=${keyword}&pageNumber=${pageNumber}&minPrice=${price[0]}&maxPrice=${price[1]}&category=${category}`
+        `/api/products?keyword=${keyword}&pageNumber=${pageNumber}&minPrice=${price[0]}&maxPrice=${price[1]}&category=${category}&sort=${sort}`
       );
       dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
     } catch (error) {

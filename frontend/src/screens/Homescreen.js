@@ -12,7 +12,8 @@ import Paginate from "../components/Paginate";
 import ProductCarousel from "../components/ProductCarousel";
 import Meta from "../components/Meta";
 import Filtering from "../components/Filtering";
-const Homescreen = ({ match, location }) => {
+import Sorting from "../components/Sorting";
+const Homescreen = ({ match, location, history }) => {
   const context = useContext(ProductContext);
   const {
     listProducts,
@@ -29,12 +30,33 @@ const Homescreen = ({ match, location }) => {
   const minPrice = new URLSearchParams(location.search).get("min");
   const maxPrice = new URLSearchParams(location.search).get("max");
   const category = new URLSearchParams(location.search).get("category");
-
+  const sort = new URLSearchParams(location.search).get("sort");
   const price = [minPrice, maxPrice];
 
   useEffect(() => {
-    listProducts(keyword, pageNumber, price, category);
-  }, [keyword, pageNumber, location]);
+    listProducts(keyword, pageNumber, price, category, sort);
+  }, [keyword, pageNumber, location, sort]);
+
+  function sortPrice() {
+    if (!sort || (sort && sort.slice(0, 5) !== "price")) {
+      history.push("/?sort=price_desc");
+    } else if (sort === "price_asc") {
+      history.push("/?sort=price_desc");
+    } else if (sort === "price_desc") {
+      history.push("/?sort=price_asc");
+    }
+  }
+
+  function sortRating() {
+    if (!sort || (sort && sort.slice(0, 6) !== "rating")) {
+      history.push("/?sort=rating_desc");
+    } else if (sort === "rating_asc") {
+      history.push("/?sort=rating_desc");
+    } else if (sort === "rating_desc") {
+      history.push("/?sort=rating_asc");
+    }
+  }
+
   return (
     <>
       <Meta />
@@ -59,6 +81,7 @@ const Homescreen = ({ match, location }) => {
           />
         )}
       />
+      <Sorting sort={sort} sortRating={sortRating} sortPrice={sortPrice} />
       {loading ? (
         <Spinnerr />
       ) : error ? (
