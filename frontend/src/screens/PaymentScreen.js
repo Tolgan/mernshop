@@ -1,7 +1,5 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Form, Button, Row, Col } from "react-bootstrap";
-import Message from "../components/Message";
-import Spinnerr from "../components/Spinnerr";
+import React, { useState, useContext } from "react";
+import { Form, Button, Col } from "react-bootstrap";
 import FormContainer from "../components/FormContainer";
 import { CartContext } from "../cartContext/cartState";
 import CheckoutSteps from "../components/CheckoutSteps";

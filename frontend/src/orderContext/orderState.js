@@ -1,6 +1,5 @@
 import React, { useReducer } from "react";
 import axios from "axios";
-import { CART_CLEAR_ITEMS } from "../constants/cartConstants";
 import {
   ORDER_CREATE_REQUEST,
   ORDER_CREATE_SUCCESS,

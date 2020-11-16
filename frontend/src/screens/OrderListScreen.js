@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { LinkContainer } from "react-router-bootstrap";
-import { Table, Button, Row, Col } from "react-bootstrap";
+import { Table, Button } from "react-bootstrap";
 import Message from "../components/Message";
 import Spinnerr from "../components/Spinnerr";
 import { UserContext } from "../userContext/userState";

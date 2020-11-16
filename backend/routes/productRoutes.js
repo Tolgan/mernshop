@@ -10,6 +10,17 @@ router.get("/", async (req, res) => {
     const page = Number(req.query.pageNumber) || 1;
     const min = Number(req.query.minPrice);
     const max = Number(req.query.maxPrice);
+    const sort =
+      req.query.sort === "price_desc"
+        ? { price: -1 }
+        : req.query.sort === "price_asc"
+        ? { price: 1 }
+        : req.query.sort === "rating_desc"
+        ? { rating: -1 }
+        : req.query.sort === "rating_asc"
+        ? { rating: 1 }
+        : {};
+
     const cat =
       req.query.category.length &&
       req.query.category !== "null" &&
@@ -33,6 +44,7 @@ router.get("/", async (req, res) => {
     const maxprice = await Product.findOne().sort({ price: -1 });
     const minprice = await Product.findOne().sort({ price: +1 });
     const products = await Product.find({ ...keyword, ...checkbox })
+      .sort({ ...sort })
       .limit(pageSize)
       .skip(pageSize * (page - 1));
 

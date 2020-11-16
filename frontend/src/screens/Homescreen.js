@@ -27,6 +27,7 @@ const Homescreen = ({ match, location, history }) => {
   } = context;
   const keyword = match.params.keyword;
   const pageNumber = match.params.pageNumber || 1;
+  console.log(pageNumber);
   const minPrice = new URLSearchParams(location.search).get("min");
   const maxPrice = new URLSearchParams(location.search).get("max");
   const category = new URLSearchParams(location.search).get("category");
@@ -95,7 +96,13 @@ const Homescreen = ({ match, location, history }) => {
           ))}
         </Row>
       )}
-      <Paginate page={page} pages={pages} keyword={keyword ? keyword : ""} />
+      <Paginate
+        page={page}
+        pages={pages}
+        keyword={keyword ? keyword : ""}
+        sort={sort ? sort : ""}
+        category={category ? category : ""}
+      />
     </>
   );
 };
