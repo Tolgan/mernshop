@@ -75,7 +75,7 @@ export const productReducer = (state, action) => {
     case PRODUCT_CREATE_RESET:
       return {
         ...state,
-        product: {},
+        product: { reviews: [] },
         success: false,
         successDelete: false,
       };

@@ -58,7 +58,6 @@ const Productscreen = ({ match, history }) => {
               <Image
                 src={product.image}
                 alt={product.name}
-                fluid
                 style={{ cursor: "pointer" }}
               />
             </Col>
@@ -153,11 +152,12 @@ const Productscreen = ({ match, history }) => {
               <h2>
                 <FormattedMessage id="reviews" />
               </h2>
-              {product.reviews.length === 0 && (
-                <Message>
-                  <FormattedMessage id="noreviews" />
-                </Message>
-              )}
+              {!product.reviews ||
+                (product.reviews.length === 0 && (
+                  <Message>
+                    <FormattedMessage id="noreviews" />
+                  </Message>
+                ))}
               <ListGroup variant="flush">
                 {product.reviews.map((review) => (
                   <ListGroup.Item key={review._id}>
@@ -208,24 +208,38 @@ const Productscreen = ({ match, history }) => {
                           value={rating}
                           onChange={(e) => setRating(e.target.value)}
                         >
-                          <option value="">
-                            <FormattedMessage id="select..." />
-                          </option>
-                          <option value="1">
-                            1 - <FormattedMessage id="poor" />
-                          </option>
-                          <option value="2">
-                            2 - <FormattedMessage id="fair" />
-                          </option>
-                          <option value="3">
-                            3 - <FormattedMessage id="good" />
-                          </option>
-                          <option value="4">
-                            4 - <FormattedMessage id="verygood" />
-                          </option>
-                          <option value="5">
-                            5 - <FormattedMessage id="excellent" />
-                          </option>
+                          <FormattedMessage id="select">
+                            {(message) => <option value="">{message}</option>}
+                          </FormattedMessage>
+                          <FormattedMessage id="poor">
+                            {(message) => (
+                              <option value="1"> 1 - {message}</option>
+                            )}
+                          </FormattedMessage>
+
+                          <FormattedMessage id="fair">
+                            {(message) => (
+                              <option value="2"> 2 - {message}</option>
+                            )}
+                          </FormattedMessage>
+
+                          <FormattedMessage id="good">
+                            {(message) => (
+                              <option value="3"> 3 - {message}</option>
+                            )}
+                          </FormattedMessage>
+
+                          <FormattedMessage id="verygood">
+                            {(message) => (
+                              <option value="4"> 4 - {message}</option>
+                            )}
+                          </FormattedMessage>
+
+                          <FormattedMessage id="excellent">
+                            {(message) => (
+                              <option value="5"> 5 - {message}</option>
+                            )}
+                          </FormattedMessage>
                         </Form.Control>
                       </Form.Group>
                       <Form.Group controlId="comment">
@@ -244,7 +258,7 @@ const Productscreen = ({ match, history }) => {
                         type="submit"
                         variant="primary"
                       >
-                        Submit
+                        <FormattedMessage id="submit" />
                       </Button>
                     </Form>
                   ) : (

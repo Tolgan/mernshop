@@ -34,6 +34,9 @@ export default {
     advancedsearch: "Gelişmiş Arama",
     cart: "Sepet",
     searchplace: "Ürün Ara..",
+    submit: "Gönder",
+    comment: "Görüşünüz",
+    select: "Seçiniz..",
   },
   english: {
     language: "english",
@@ -70,5 +73,8 @@ export default {
     advancedsearch: "Advanced Search",
     cart: "Cart",
     searchplace: "Search Products..",
+    submit: "Submit",
+    comment: "Comment",
+    select: "Select..",
   },
 };
