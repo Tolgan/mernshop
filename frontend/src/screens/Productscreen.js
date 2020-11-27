@@ -34,7 +34,9 @@ const Productscreen = ({ match, history }) => {
   const addToCartHandler = () => {
     history.push(`/cart/${match.params.id}?qty=${quantity}`);
   };
-
+  const ratingHandler = (e) => {
+    setRating(e);
+  };
   const submitHandler = (e) => {
     e.preventDefault();
     createReview(match.params.id, { rating, comment });
@@ -70,6 +72,9 @@ const Productscreen = ({ match, history }) => {
                   <Rating
                     rating={product.rating}
                     text={`${product.numReviews} reviews`}
+                    edit={true}
+                    handleRating={ratingHandler}
+                    userInfo={userInfo}
                   />
                 </ListGroup.Item>
                 <ListGroup.Item>Price: ${product.price}</ListGroup.Item>
@@ -204,6 +209,7 @@ const Productscreen = ({ match, history }) => {
                           <FormattedMessage id="rating" />
                         </Form.Label>
                         <Form.Control
+                          id="toselect"
                           as="select"
                           value={rating}
                           onChange={(e) => setRating(e.target.value)}

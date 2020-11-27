@@ -59,3 +59,11 @@ h2 {
   border: black solid 1px;
   border-radius: 2px;
 }
+
+.hover i {
+  background: turquoise;
+  cursor: pointer;
+}
+.onclick i {
+  background: blue;
+}
